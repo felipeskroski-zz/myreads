@@ -6,12 +6,19 @@ import BookSearch from './BookSearch'
 import './App.css'
 
 class BooksApp extends React.Component {
-
+  state = {
+    results: []
+  }
+  searchBooks = (keyword) => {
+    BooksAPI.search(keyword, 200).then(results => {
+      this.setState(state => ({results}))
+    })
+  }
   render() {
     return (
       <div className="app">
         <Route path='/search' render={()=>(
-          <BookSearch />
+          <BookSearch onSearch={this.searchBooks} results={this.state.results}/>
         )} />
 
         <Route exact path='/' render={()=>(
