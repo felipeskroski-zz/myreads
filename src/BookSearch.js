@@ -7,8 +7,6 @@ class BookSearch extends Component {
     this.props.onSearch(event.target.value);
   }
   render(){
-    console.log(this.props.results)
-
     return(
       <div className="search-books">
         <div className="search-books-bar">
@@ -35,6 +33,7 @@ class BookSearch extends Component {
                   coverSize={{width: 128, height: 196}}
                   authors={book.authors}
                   title={book.title}
+                  shelf={book.shelf || 'none'}
                   status='read'
                 />
               </li>
