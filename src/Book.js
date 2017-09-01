@@ -1,8 +1,8 @@
 import React from 'react'
 
 const handleChange = (onUpdate, book, event) => {
-  onUpdate(book, event.target.value);
-}
+  onUpdate(book, event.target.value)
+};
 const Book = ({book, onUpdate}) => (
   <div className="book">
     <div className="book-top">
