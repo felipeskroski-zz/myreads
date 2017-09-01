@@ -28,14 +28,7 @@ class BookSearch extends Component {
           <ol className="books-grid">
             {this.props.results.map((book,index) =>(
               <li key={book.id}>
-                <Book
-                  coverImage={book.imageLinks.smallThumbnail}
-                  coverSize={{width: 128, height: 196}}
-                  authors={book.authors}
-                  title={book.title}
-                  shelf={book.shelf || 'none'}
-                  status='read'
-                />
+                <Book book={book}/>
               </li>
             ))}
           </ol>

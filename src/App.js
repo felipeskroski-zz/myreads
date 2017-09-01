@@ -16,6 +16,9 @@ class BooksApp extends React.Component {
       this.setState(state => ({books}))
     })
   }
+  updateBook = (book, shelf) => {
+    BooksAPI.search(book, shelf)
+  }
   searchBooks = (keyword) => {
     BooksAPI.search(keyword, 200).then(results => {
       this.setState(state => ({results}))
