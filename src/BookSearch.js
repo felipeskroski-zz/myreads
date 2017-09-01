@@ -7,6 +7,7 @@ class BookSearch extends Component {
     this.props.onSearch(event.target.value);
   }
   render(){
+    const {onUpdate} =this.props
     return(
       <div className="search-books">
         <div className="search-books-bar">
@@ -28,7 +29,7 @@ class BookSearch extends Component {
           <ol className="books-grid">
             {this.props.results.map((book,index) =>(
               <li key={book.id}>
-                <Book book={book}/>
+                <Book book={book} onUpdate={onUpdate}/>
               </li>
             ))}
           </ol>

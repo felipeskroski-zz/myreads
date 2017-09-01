@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 
 class Books extends Component {
   render(){
-    const {books} = this.props
+    const {books, onUpdate} = this.props
 
     return(
       <div className="list-books">
@@ -14,16 +14,19 @@ class Books extends Component {
         <div className="list-books-content">
           <div>
             <BookShelf
-              books={books.filter(b => b.shelf == 'currentlyReading')}
+              books={books.filter(b => b.shelf === 'currentlyReading')}
               title='Currently reading'
+              onUpdate={onUpdate}
             />
             <BookShelf
-              books={books.filter(b => b.shelf == 'wantToRead')}
+              books={books.filter(b => b.shelf === 'wantToRead')}
               title='Want to read'
+              onUpdate={onUpdate}
             />
             <BookShelf
-              books={books.filter(b => b.shelf == 'read')}
+              books={books.filter(b => b.shelf === 'read')}
               title='Read'
+              onUpdate={onUpdate}
             />
           </div>
         </div>

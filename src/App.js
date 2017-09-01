@@ -12,12 +12,17 @@ class BooksApp extends React.Component {
   }
   componentDidMount(){
     BooksAPI.getAll().then(books => {
-      console.log(books)
       this.setState(state => ({books}))
     })
   }
   updateBook = (book, shelf) => {
-    BooksAPI.search(book, shelf)
+    let updatedShelf = this.state.books.filter((b) => (b !== book))
+    let newBook = book
+    newBook.shelf = shelf
+    updatedShelf.push(newBook)
+    this.setState(state => ({books: updatedShelf}))
+
+    BooksAPI.update(book, shelf)
   }
   searchBooks = (keyword) => {
     BooksAPI.search(keyword, 200).then(results => {
@@ -28,11 +33,17 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         <Route path='/search' render={()=>(
-          <BookSearch onSearch={this.searchBooks} results={this.state.results}/>
+          <BookSearch
+            onSearch={this.searchBooks}
+            results={this.state.results}
+            onUpdate={this.updateBook}/>
         )} />
 
         <Route exact path='/' render={()=>(
-          <Books books={this.state.books}/>
+          <Books
+            books={this.state.books}
+            onUpdate={this.updateBook}
+          />
         )} />
       </div>
     )

@@ -1,11 +1,14 @@
 import React from 'react'
 
-const Book = ({book}) => (
+const handleChange = (onUpdate, book, event) => {
+  onUpdate(book, event.target.value);
+}
+const Book = ({book, onUpdate}) => (
   <div className="book">
     <div className="book-top">
       <div className="book-cover" style={{ width: 128, height: 196, backgroundImage: `url(${book.imageLinks.smallThumbnail})` }}></div>
       <div className="book-shelf-changer">
-        <select value={book.shelf} onChange={()=>{}}>
+        <select value={book.shelf} onChange={(e)=> handleChange(onUpdate,book,e)}>
           <option value="none" disabled>Move to...</option>
           <option value="currentlyReading">Currently Reading</option>
           <option value="wantToRead">Want to Read</option>
