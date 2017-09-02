@@ -1,13 +1,16 @@
 import React, {Component} from 'react'
 import Book from './Book'
 import {Link} from 'react-router-dom'
+import PropTypes from 'prop-types';
 
 class BookSearch extends Component {
+
   handleChange = (event) => {
+    console.log(event.target.value)
     this.props.onSearch(event.target.value);
   }
   render(){
-    const {onUpdate, books, results} =this.props
+    const {onUpdate, books, results} = this.props
     const bookIds = books.map(b => b.id)
     const mergeResults = results.map(b => {
       if(bookIds.includes(b.id)){
@@ -16,6 +19,8 @@ class BookSearch extends Component {
         return(b)
       }
     })
+
+
     return(
       <div className="search-books">
         <div className="search-books-bar">
@@ -45,5 +50,9 @@ class BookSearch extends Component {
       </div>
     )
   }
+}
+BookSearch.propTypes = {
+  books: PropTypes.array,
+  results: PropTypes.array
 }
 export default BookSearch

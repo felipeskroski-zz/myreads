@@ -26,7 +26,9 @@ class BooksApp extends React.Component {
   }
   searchBooks = (keyword) => {
     BooksAPI.search(keyword, 200).then(results => {
-      this.setState(state => ({results}))
+      if(Array.isArray(results)){
+        return(this.setState(state => ({results})))
+      }
     })
   }
   render() {
