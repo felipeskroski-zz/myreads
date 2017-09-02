@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 class BookSearch extends Component {
 
   handleChange = (event) => {
-    console.log(event.target.value)
     this.props.onSearch(event.target.value);
   }
   render(){
@@ -14,7 +13,7 @@ class BookSearch extends Component {
     const bookIds = books.map(b => b.id)
     const mergeResults = results.map(b => {
       if(bookIds.includes(b.id)){
-        return(books.find(s => s.id == b.id))
+        return(books.find(s => s.id === b.id))
       }else{
         return(b)
       }

@@ -12,7 +12,7 @@ class BooksApp extends React.Component {
   }
   componentDidMount(){
     BooksAPI.getAll().then(books => {
-      this.setState(state => ({books}))
+      this.setState({books})
     })
   }
   updateBook = (book, shelf) => {
@@ -27,7 +27,9 @@ class BooksApp extends React.Component {
   searchBooks = (keyword) => {
     BooksAPI.search(keyword, 200).then(results => {
       if(Array.isArray(results)){
-        return(this.setState(state => ({results})))
+        return(this.setState({results}))
+      }else{
+        return(this.setState({results:[]}))
       }
     })
   }
