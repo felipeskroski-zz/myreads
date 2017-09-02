@@ -7,7 +7,15 @@ class BookSearch extends Component {
     this.props.onSearch(event.target.value);
   }
   render(){
-    const {onUpdate} =this.props
+    const {onUpdate, books, results} =this.props
+    const bookIds = books.map(b => b.id)
+    const mergeResults = results.map(b => {
+      if(bookIds.includes(b.id)){
+        return(books.find(s => s.id == b.id))
+      }else{
+        return(b)
+      }
+    })
     return(
       <div className="search-books">
         <div className="search-books-bar">
@@ -27,7 +35,7 @@ class BookSearch extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {this.props.results.map((book,index) =>(
+            {mergeResults.map((book,index) =>(
               <li key={book.id}>
                 <Book book={book} onUpdate={onUpdate}/>
               </li>

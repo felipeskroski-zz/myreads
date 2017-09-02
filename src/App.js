@@ -36,6 +36,7 @@ class BooksApp extends React.Component {
           <BookSearch
             onSearch={this.searchBooks}
             results={this.state.results}
+            books={this.state.books}
             onUpdate={this.updateBook}/>
         )} />
 
